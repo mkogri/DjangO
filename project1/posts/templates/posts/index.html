@@ -1,0 +1,29 @@
+{% extends 'posts/layout.html'%}
+{% block body %}
+<div>
+    <a href="/posts"style="font-size:20px" >Home</a>
+    <a href="../music">Music app</a>
+</div>
+
+<div> 
+<h3 style="color:thistle" >{{title}}:</h3>
+</div>
+<div class="" >
+    <ul >
+        {% for post in posts %}     
+            <li class="collection-item">
+                <h5>{{post.title}}:</h5>
+                <p>
+                    Libélé du post {{ post.title }}<br>
+                    ...&#8230;<a href="/posts/details/{{post.id}}"> En savoir plus</a>
+                </p>
+
+            </li>
+            <hr />
+        {% endfor%}          
+    </ul>
+</div>
+
+{% endblock %}
+
+
