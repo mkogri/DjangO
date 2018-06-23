@@ -7,7 +7,7 @@
                 {% load static %}
                 {% static "" as baseUrl %}
                 <!-- image -->
-                <img src="{{ baseUrl }}/{{ album.album_logo }}" style="width: 350"></img>
+                <img src="{{ baseUrl }}/{{ album.album_logo }}" style="width: 250"></img>
 
                 <!-- Details button -->
                 <a href="{% url 'music:details' album.id%}" style="display: inline">
@@ -21,6 +21,7 @@
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                 </form>
+
                 <!-- Delete button -->
                 <form action="{% url 'music:album-delete' album.id%}" method="POST" style="display: inline;">
                     {% csrf_token %}

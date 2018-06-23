@@ -8,12 +8,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from .form import UserForm
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
+    login_url = '/login'
+    redirect_field_name = '/'
     template_name = 'music/index.html' 
     context_object_name = 'all_albums'
-    def get_queryset(sefl):
+
+    def get_queryset(self):
         return Album.objects.all()
 
 class DetailsView(generic.DetailView):
@@ -33,7 +37,7 @@ class AlbumDelete(DeleteView):
     success_url = reverse_lazy('music:index')
 
 class UserFormView(View):
-    # What is the blue print u use for ur form
+    # It is the blue print u use for ur form
     form_class = UserForm
     template_name = 'music/registration_form.html'
 
@@ -52,7 +56,7 @@ class UserFormView(View):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             
-            #user.password = 'chickenand1' we can't the pw like this bcause of the hash code
+            #user.password = 'chicken_and_run' we can't write the pw like this bcause of the hash code
             #proper way :
             user.set_password(password)
             user.save()

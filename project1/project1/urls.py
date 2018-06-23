@@ -16,12 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 
+from rest_framework.urlpatterns import format_suffix_patterns
+from stock import views
+
+
 urlpatterns = [
-
-    url(r'^$',include('posts.urls')),
     url('admin/', admin.site.urls),
-    url(r'^posts/',include('posts.urls')),
-    url(r'^music/',include('music.urls')),
+    url(r'^$', include('posts.urls')),
+    url(r'^posts/', include('posts.urls')),
+    url(r'^music/', include('music.urls')),
+    url(r'^stock/', views.StockList.as_view()),
+    url(r'^ApiGeo/', include('ApiGeo.urls')),
     url('accounts/', include('django.contrib.auth.urls'))
-
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

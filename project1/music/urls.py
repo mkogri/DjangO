@@ -6,7 +6,7 @@ urlpatterns = [
     #/music/
     #url(r'^$', views.index, name='index'),
     url(r'^album$', views.IndexView.as_view(), name='index'),
-    url(r'^$', views.UserFormView.as_view(), name='register'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
 
     #/music/<album_id>
     url(r'^(?P<pk>[0-9]+)/$', views.DetailsView.as_view(), name='details'),
